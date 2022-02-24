@@ -2,7 +2,7 @@
   <div class="container-fluid text-center">
     <div class="option-list row row-cols-4 gy-3">
       <div class="col" v-for="(option, index) in optionList" :key="index">
-        <div class="option">
+        <div class="option" @click="selectPrice(option)">
           <div class="fw-bold">
             {{ option.capacity }} c.c
           </div>
@@ -17,8 +17,11 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
+
 export default {
   setup() {
+    const router = useRouter();
     const optionList = [{
       capacity: 125,
       price: 5,
@@ -45,8 +48,13 @@ export default {
       price: 160,
     }];
 
+    const selectPrice = () => {
+      router.push('/Output');
+    };
+
     return {
       optionList,
+      selectPrice,
     };
   },
 };
